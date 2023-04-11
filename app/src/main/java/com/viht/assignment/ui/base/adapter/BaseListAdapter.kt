@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 abstract class BaseListAdapter(
     vararg types: Cell<RecyclerItem>,
-    private val listener: AdapterListener? = null
+    private val onItemClicked: (RecyclerItem) -> Unit
 ) : ListAdapter<RecyclerItem, RecyclerView.ViewHolder>(BASE_DIFF_CALLBACK) {
 
     private val cellTypes: CellTypes<RecyclerItem> = CellTypes(*types)
@@ -22,7 +22,7 @@ abstract class BaseListAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = getItem(position)
-        cellTypes.of(item).bind(holder, item, listener)
+        cellTypes.of(item).bind(holder, item, onItemClicked)
     }
 
 }

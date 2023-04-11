@@ -17,7 +17,8 @@ object ExampleData {
                 id = "1",
                 title = "LittleLives + Demo1 (Staging)",
                 name = "Event at School level",
-                dateTime = "01 May 2022, 12:30 PM"
+                dateTime = "01 May 2022, 12:30 PM",
+                clickAdd = false
             )
         )
 
@@ -42,7 +43,8 @@ object ExampleData {
                 id = "4",
                 title = "LittleLives + Demo1 (Staging)",
                 name = "Event at School level",
-                dateTime = "01 Jun 2022, 03:30 PM"
+                dateTime = "01 Jun 2022, 03:30 PM",
+                clickAdd = false
             )
         )
 
@@ -50,7 +52,8 @@ object ExampleData {
             PortfolioDownLoad(
                 id = "5",
                 type = "PDF",
-                name = "https://s3.ap-southeast-1.amazonaws.com/ll.staging/preview/e1dfc12f-9080-44ee-b5da-a76c5274e57f.pdf"
+                name = "https://s3.ap-southeast-1.amazonaws.com/ll.staging/preview/e1dfc12f-9080-44ee-b5da-a76c5274e57f.pdf",
+                clickDownload = false
             )
         )
 
@@ -85,7 +88,8 @@ object ExampleData {
             PortfolioDownLoad(
                 id = "9",
                 type = "PDF",
-                name = "https://s3.ap-southeast-1.amazonaws.com/ll.staging/preview/e1dfc12f-9080-44ee-b5da-a76c5274e57f.pdf"
+                name = "https://s3.ap-southeast-1.amazonaws.com/ll.staging/preview/e1dfc12f-9080-44ee-b5da-a76c5274e57f.pdf",
+                clickDownload = false
             )
         )
 
@@ -113,7 +117,8 @@ object ExampleData {
                 id = "12",
                 title = "LittleLives + Demo1 (Staging)",
                 name = "Event at School level",
-                dateTime = "01 Jul 2022, 10:30 AM"
+                dateTime = "01 Jul 2022, 10:30 AM",
+                clickAdd = false
             )
         )
 
@@ -122,7 +127,8 @@ object ExampleData {
                 id = "13",
                 title = "LittleLives + Demo1 (Staging)",
                 name = "Event at School level",
-                dateTime = "01 Jan 2022, 09:30 AM"
+                dateTime = "01 Jan 2022, 09:30 AM",
+                clickAdd = false
             )
         )
 
@@ -166,7 +172,8 @@ object ExampleData {
                 id = "18",
                 title = "LittleLives + Demo1 (Staging)",
                 name = "Event at School level",
-                dateTime = "01 Feb 2022, 10:30 AM"
+                dateTime = "01 Feb 2022, 10:30 AM",
+                clickAdd = false
             )
         )
 

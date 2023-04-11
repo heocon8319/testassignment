@@ -3,7 +3,6 @@ package com.viht.assignment.ui.news.view.header
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.viht.assignment.R
-import com.viht.assignment.ui.base.adapter.AdapterListener
 import com.viht.assignment.ui.base.adapter.Cell
 import com.viht.assignment.ui.base.adapter.RecyclerItem
 
@@ -24,12 +23,12 @@ object HeaderCell : Cell<RecyclerItem>() {
     override fun bind(
         holder: RecyclerView.ViewHolder,
         item: RecyclerItem?,
-        listener: AdapterListener?
+        onItemClicked: (RecyclerItem) -> Unit
     ) {
         if (holder is HeaderViewHolder && item is Header) {
             holder.bind(item)
             holder.itemView.setOnClickListener {
-                listener?.listen(item)
+                onItemClicked?.invoke(item)
             }
         }
     }

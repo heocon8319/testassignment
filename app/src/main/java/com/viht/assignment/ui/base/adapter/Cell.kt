@@ -11,7 +11,7 @@ abstract class Cell<T> {
     abstract fun belongsTo(item: T?): Boolean
     abstract fun type(): Int
     abstract fun holder(parent: ViewGroup): RecyclerView.ViewHolder
-    abstract fun bind(holder: RecyclerView.ViewHolder, item: T?, listener: AdapterListener?)
+    abstract fun bind(holder: RecyclerView.ViewHolder, item: T?, onItemClicked: (RecyclerItem) -> Unit)
 
     protected fun ViewGroup.viewOf(@LayoutRes resource: Int): View {
         return LayoutInflater

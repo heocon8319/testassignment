@@ -10,8 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.viht.assignment.databinding.FragmentNewsBinding
-import com.viht.assignment.ui.base.adapter.AdapterClick
-import com.viht.assignment.ui.base.adapter.AdapterListener
 import com.viht.assignment.ui.base.adapter.RecyclerItem
 import com.viht.assignment.ui.news.view.checkinout.CheckInOut
 import com.viht.assignment.ui.news.view.event.Event
@@ -21,7 +19,7 @@ import com.viht.assignment.ui.news.view.portfolioimage.PortfolioImage
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class NewsFragment : Fragment(), AdapterListener {
+class NewsFragment : Fragment() {
 
     companion object {
         fun newInstance() = NewsFragment()
@@ -32,7 +30,35 @@ class NewsFragment : Fragment(), AdapterListener {
     private var _binding: FragmentNewsBinding? = null
     private val binding get() = _binding!!
 
-    private val listAdapter by lazy { NewsAdapter(this) }
+    private val listAdapter by lazy {
+        NewsAdapter {
+            when (it) {
+                is Header -> {
+                    //date
+                }
+                is CheckInOut -> {
+                    Toast.makeText(context, "show detail check in out", Toast.LENGTH_SHORT).show()
+                }
+                is Event -> {
+                    if (it.clickAdd) {
+                        Toast.makeText(context, "Add calendar", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(context, "show detail event", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                is PortfolioDownLoad -> {
+                    if (it.clickDownload) {
+                        Toast.makeText(context, "Download file", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(context, "show download detail", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                is PortfolioImage -> {
+                    Toast.makeText(context, "show image tm", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
     private var count = 0
     private var data: ArrayList<RecyclerItem> = arrayListOf()
 
@@ -82,26 +108,6 @@ class NewsFragment : Fragment(), AdapterListener {
         data.addAll(ExampleData.createList())
         listAdapter.submitList(data)
         binding.rvNews.adapter = listAdapter
-    }
-
-    override fun listen(click: AdapterClick?) {
-        when (click) {
-            is Header -> {
-                //date
-            }
-            is CheckInOut -> {
-                Toast.makeText(context, "show detail check in out", Toast.LENGTH_SHORT).show()
-            }
-            is Event -> {
-                Toast.makeText(context, "show detail event", Toast.LENGTH_SHORT).show()
-            }
-            is PortfolioDownLoad -> {
-                Toast.makeText(context, "show download", Toast.LENGTH_SHORT).show()
-            }
-            is PortfolioImage -> {
-                Toast.makeText(context, "show image", Toast.LENGTH_SHORT).show()
-            }
-        }
     }
 
 //    private fun initView() {

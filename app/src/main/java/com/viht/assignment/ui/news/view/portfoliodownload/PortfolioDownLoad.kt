@@ -5,5 +5,6 @@ import com.viht.assignment.ui.base.adapter.RecyclerItem
 
 data class PortfolioDownLoad(
     override val id: String,
-    val text: String
+    val type: String,
+    val name: String,
 ) : RecyclerItem, AdapterClick

@@ -5,5 +5,8 @@ import com.viht.assignment.ui.base.adapter.RecyclerItem
 
 data class CheckInOut(
     override val id: String,
-    val text: String
+    val name: String,
+    val type: String,
+    val time: String,
+    val image: String
 ) : RecyclerItem, AdapterClick

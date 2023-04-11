@@ -5,5 +5,7 @@ import com.viht.assignment.ui.base.adapter.RecyclerItem
 
 data class Event(
     override val id: String,
-    val text: String
+    val title: String,
+    val name: String,
+    val dateTime: String
 ) : RecyclerItem, AdapterClick

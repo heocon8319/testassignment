@@ -7,7 +7,10 @@ import com.viht.assignment.databinding.LayoutItemPortfolioDownloadBinding
 class PortfolioDownLoadViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val binding = LayoutItemPortfolioDownloadBinding.bind(view)
     fun bind(ob: PortfolioDownLoad) {
-        binding.tvDescription.text = ob.text
+
+        //description
+        val description = "You have a Story ${ob.type} to download ${ob.name}"
+        binding.tvDescription.text = description
     }
 
 }

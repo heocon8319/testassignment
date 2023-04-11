@@ -104,7 +104,7 @@ object ExampleData {
                 id = "11",
                 title = "Dot's Dad",
                 name = "(DO NOT EDIT) The Sunny Schoolhouse 1",
-                image = "https://s3.ap-southeast-1.amazonaws.com/six-littlelives-stg/media/eb4d1921-2405-47c4-ba67-9b5672e67da5/5-canh-dong-hanh-toi-mua-hanh-4191-5672-1653965069.jpeg"
+                image = "https://s3./ap-southeast-1.amazonaws.com/six-littlelives-stg/media/eb4d1921-2405-47c4-ba67-9b5672e67da5/5-canh-dong-hanh-toi-mua-hanh-4191-5672-1653965069.jpeg"
             )
         )
 

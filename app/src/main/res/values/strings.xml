@@ -1,0 +1,32 @@
+<resources>
+
+    <!--Common-->
+    <string name="app_name">Assignment</string>
+    <string name="title_news">News</string>
+    <string name="title_check_in">Check In</string>
+    <string name="title_inbox">Inbox</string>
+    <string name="title_portfolio">Portfolio</string>
+    <string name="title_more">More</string>
+    <string name="title_share_feedback">Share feedback</string>
+
+    <!--News Fragment-->
+    <string name="news_fragment_title_hello">Hello News Fragment</string>
+    <string name="news_fragment_title_events">events</string>
+    <string name="news_fragment_title_check_in_out">check in &amp; out</string>
+    <string name="news_fragment_title_portfolio">portfolio</string>
+    <string name="news_fragment_title_download">Download</string>
+    <string name="news_fragment_title_add">Add</string>
+
+    <!--Check In Fragment-->
+    <string name="check_in_fragment_title_hello">Hello Check In Fragment</string>
+
+    <!--Inbox Fragment-->
+    <string name="inbox_fragment_title_hello">Hello Inbox Fragment</string>
+
+    <!--Portfolio Fragment-->
+    <string name="portfolio_fragment_title_hello">Hello Portfolio Fragment</string>
+
+    <!--More Fragment-->
+    <string name="more_fragment_title_hello">Hello More Fragment</string>
+
+</resources>

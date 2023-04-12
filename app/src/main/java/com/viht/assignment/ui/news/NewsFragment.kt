@@ -1,6 +1,7 @@
 package com.viht.assignment.ui.news
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,35 +33,12 @@ class NewsFragment : Fragment() {
 
     private val listAdapter by lazy {
         NewsAdapter {
-            when (it) {
-                is Header -> {
-                    //date
-                }
-                is CheckInOut -> {
-                    Toast.makeText(context, "show detail check in out", Toast.LENGTH_SHORT).show()
-                }
-                is Event -> {
-                    if (it.clickAdd) {
-                        Toast.makeText(context, "Add calendar", Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(context, "show detail event", Toast.LENGTH_SHORT).show()
-                    }
-                }
-                is PortfolioDownLoad -> {
-                    if (it.clickDownload) {
-                        Toast.makeText(context, "Download file", Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(context, "show download detail", Toast.LENGTH_SHORT).show()
-                    }
-                }
-                is PortfolioImage -> {
-                    Toast.makeText(context, "show image tm", Toast.LENGTH_SHORT).show()
-                }
-            }
+            handleClickItem(it)
         }
     }
     private var count = 0
     private var data: ArrayList<RecyclerItem> = arrayListOf()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -72,19 +50,17 @@ class NewsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        initialize()
+        initView()
+        initData()
     }
 
-    private fun initialize() {
-
+    private fun initView() {
         binding.rvNews.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = listAdapter
         }
 
         data = arrayListOf()
-        getData()
 
         binding.scrollView.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
             // on scroll change we are checking when users scroll as bottom.
@@ -103,69 +79,52 @@ class NewsFragment : Fragment() {
         })
     }
 
-    private fun getData() {
-        binding.rvNews.visibility = View.VISIBLE
-        data.addAll(ExampleData.createList())
-        listAdapter.submitList(data)
-        binding.rvNews.adapter = listAdapter
+    private fun initData() {
+        viewModel.error.observe(viewLifecycleOwner) {
+            Log.d("viht error", it)
+            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+            listAdapter.submitList(mutableListOf())
+        }
+
+        viewModel.response.observe(viewLifecycleOwner) {
+            binding.rvNews.visibility = View.VISIBLE
+            data.addAll(it)
+            listAdapter.submitList(data)
+            binding.rvNews.adapter = listAdapter
+        }
     }
 
-//    private fun initView() {
-//        viewModel.text.observe(viewLifecycleOwner) {
-//            binding.tvHello.text = it
-//        }
-//    }
+    private fun getData() {
+        viewModel.loadNews()
+    }
 
-////    private var adapterNews = NewsAdapter {
-////        onClickNews(it)
-////    }
-//
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//
-////        initView()
-////        initData()
-//    }
-//
-////    private fun initView() {
-////        val layoutManager = LinearLayoutManager(context)
-////        binding.rvNews.layoutManager = layoutManager
-////
-////        val dividerItemDecoration = DividerItemDecoration(
-////            binding.rvNews.context,
-////            layoutManager.orientation
-////        )
-////        binding.rvNews.addItemDecoration(dividerItemDecoration)
-////
-////        binding.rvNews.adapter = adapterNews
-////    }
-////
-////    private fun initData() {
-////        viewModel.error.observe(this) {
-////            Log.d("viht error", it)
-////            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
-////            adapterNews.submitList(mutableListOf())
-////        }
-////
-////        viewModel.loading.observe(this) {
-////            if (it) {
-////                Toast.makeText(context, "showProgressBar", Toast.LENGTH_SHORT).show()
-////                //showProgressBar()
-////            } else {
-////                Toast.makeText(context, "hideProgressBar", Toast.LENGTH_SHORT).show()
-////                //hideProgressBar()
-////            }
-////        }
-////
-////        viewModel.response.observe(this) {
-////            Log.d("viht", it.toString())
-////            adapterNews.submitList(it?.toConvertedData())
-////        }
-////    }
-////
-////    private fun onClickNews(news: News) {
-////        Toast.makeText(context, news.eventDescription, Toast.LENGTH_SHORT).show()
-////    }
+    private fun handleClickItem(item: RecyclerItem) {
+        when (item) {
+            is Header -> {
+                //date
+            }
+            is CheckInOut -> {
+                Toast.makeText(context, "Navigate detail check in out", Toast.LENGTH_SHORT).show()
+            }
+            is Event -> {
+                if (item.clickAdd) {
+                    Toast.makeText(context, "Add calendar", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(context, "Navigate detail event", Toast.LENGTH_SHORT).show()
+                }
+            }
+            is PortfolioDownLoad -> {
+                if (item.clickDownload) {
+                    Toast.makeText(context, "Download file", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(context, "Navigate download detail", Toast.LENGTH_SHORT).show()
+                }
+            }
+            is PortfolioImage -> {
+                Toast.makeText(context, "Navigate detail image", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

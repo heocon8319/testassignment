@@ -23,20 +23,21 @@ data class News(
 }
 
 fun News.toNewsModel(): NewsModel {
-    var model: BaseModel = Gson().fromJson(eventSnapshot, EventModel::class.java)
-    when (eventType) {
-        "everydayHealth" -> model = Gson().fromJson(eventSnapshot, EverydayHealthModel::class.java)
-        "checkOut", "checkIn" -> model = Gson().fromJson(eventSnapshot, CheckInOutModel::class.java)
-        "portfolio" -> model = Gson().fromJson(eventSnapshot, PortfolioModel::class.java)
-        "story_exported" -> model = Gson().fromJson(eventSnapshot, StoryExportedModel::class.java)
-        "story_published" -> model = Gson().fromJson(eventSnapshot, StoryPublishedModel::class.java)
+    val className = when (eventType) {
+        "event" -> EventModel::class.java
+        "everydayHealth" -> EverydayHealthModel::class.java
+        "checkOut", "checkIn" -> CheckInOutModel::class.java
+        "portfolio" -> PortfolioModel::class.java
+        "story_exported" -> StoryExportedModel::class.java
+        "story_published" -> StoryPublishedModel::class.java
+        else -> throw IllegalStateException("Unknown class name")
     }
+
     return NewsModel(
         eventDate = eventDate ?: "",
         eventDescription = eventDescription ?: "",
-        model = model,
+        model = Gson().fromJson(eventSnapshot, className),
         eventType = eventType ?: "",
         insertedAt = insertedAt ?: "",
     )
-
 }

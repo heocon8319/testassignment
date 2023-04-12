@@ -3,6 +3,9 @@ package com.viht.assignment.model
 import android.os.Parcelable
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
+import com.viht.assignment.ui.news.view.event.Event
+import com.viht.assignment.ui.news.view.portfolioimage.PortfolioImage
+import com.viht.assignment.util.DateUtils
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -19,10 +22,19 @@ data class StoryPublishedModel(
     val storyImage: String?,
     @SerializedName("story_name")
     val storyName: String?
-) : Parcelable, BaseModel {
+) : Parcelable, BaseModel() {
 
-    override fun execute(jsonString: String?): BaseModel {
-        return Gson().fromJson(jsonString, StoryPublishedModel::class.java)
-    }
+//    override fun execute(jsonString: String?): BaseModel {
+//        return Gson().fromJson(jsonString, StoryPublishedModel::class.java)
+//    }
 
+}
+
+fun StoryPublishedModel.toPortfolioImageRecycleItem(id: String) = run {
+    PortfolioImage(
+        id = id,
+        title = this.publisherName ?: "",
+        name = this.storyName ?: "",
+        image = this.storyImage ?: ""
+    )
 }

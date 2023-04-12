@@ -1,5 +1,5 @@
 package com.viht.assignment.model
 
-interface BaseModel {
-    fun execute(jsonString: String?): BaseModel
+abstract class BaseModel {
+    //fun execute(jsonString: String?): BaseModel
 }

@@ -1,5 +1,6 @@
 package com.viht.assignment.ui.news
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -17,6 +18,9 @@ import com.viht.assignment.ui.news.view.event.Event
 import com.viht.assignment.ui.news.view.header.Header
 import com.viht.assignment.ui.news.view.portfoliodownload.PortfolioDownLoad
 import com.viht.assignment.ui.news.view.portfolioimage.PortfolioImage
+import com.viht.assignment.ui.newsdetail.DetailNewsActivity
+import com.viht.assignment.util.Constants.INTENT_FRAGMENT_TYPE
+import com.viht.assignment.util.launchActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -104,25 +108,31 @@ class NewsFragment : Fragment() {
                 //date
             }
             is CheckInOut -> {
-                Toast.makeText(context, "Navigate detail check in out", Toast.LENGTH_SHORT).show()
+                navigateToActivity("checkInOut")
             }
             is Event -> {
                 if (item.clickAdd) {
                     Toast.makeText(context, "Add calendar", Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(context, "Navigate detail event", Toast.LENGTH_SHORT).show()
+                    navigateToActivity("event")
                 }
             }
             is PortfolioDownLoad -> {
                 if (item.clickDownload) {
                     Toast.makeText(context, "Download file", Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(context, "Navigate download detail", Toast.LENGTH_SHORT).show()
+                    navigateToActivity("portfolioDownload")
                 }
             }
             is PortfolioImage -> {
-                Toast.makeText(context, "Navigate detail image", Toast.LENGTH_SHORT).show()
+                navigateToActivity("portfolioImage")
             }
+        }
+    }
+
+    private fun navigateToActivity(type: String){
+        context?.launchActivity<DetailNewsActivity> {
+            putExtra(INTENT_FRAGMENT_TYPE, type)
         }
     }
 

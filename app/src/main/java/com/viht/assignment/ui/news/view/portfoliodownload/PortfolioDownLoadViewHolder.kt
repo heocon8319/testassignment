@@ -9,7 +9,7 @@ class PortfolioDownLoadViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     fun bind(ob: PortfolioDownLoad) {
 
         //description
-        val description = "You have a Story ${ob.type} to download ${ob.name}"
+        val description = "${ob.type} ${ob.name}"
         binding.tvDescription.text = description
     }
 

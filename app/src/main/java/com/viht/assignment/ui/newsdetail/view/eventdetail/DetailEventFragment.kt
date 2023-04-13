@@ -1,4 +1,4 @@
-package com.viht.assignment.ui.newsdetail
+package com.viht.assignment.ui.newsdetail.view.eventdetail
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -8,17 +8,17 @@ import android.view.View
 import android.view.ViewGroup
 import com.viht.assignment.R
 
-class DetailNewsFragment : Fragment() {
+class DetailEventFragment : Fragment() {
 
     companion object {
-        fun newInstance() = DetailNewsFragment()
+        fun newInstance() = DetailEventFragment()
     }
 
-    private lateinit var viewModel: DetailNewsViewModel
+    private lateinit var viewModel: DetailEventViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(DetailNewsViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(DetailEventViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
@@ -26,7 +26,7 @@ class DetailNewsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_detail_news, container, false)
+        return inflater.inflate(R.layout.fragment_detail_event, container, false)
     }
 
 }

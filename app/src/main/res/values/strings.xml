@@ -17,6 +17,14 @@
     <string name="news_fragment_title_download">Download</string>
     <string name="news_fragment_title_add">Add</string>
 
+    <!--News Detail Activity-->
+    <string name="news_detail_act_title_event">Event Detail</string>
+    <string name="news_detail_act_title_check_in">Check In Detail</string>
+    <string name="news_detail_act_title_check_out">Check Out Detail</string>
+    <string name="news_detail_act_title_download">Download Detail</string>
+    <string name="news_detail_act_title_image">Image Detail</string>
+    <string name="news_detail_act_title_hello">This is %s Fragment</string>
+
     <!--Check In Fragment-->
     <string name="check_in_fragment_title_hello">Hello Check In Fragment</string>
 

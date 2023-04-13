@@ -108,7 +108,7 @@ class NewsFragment : Fragment() {
                 //date
             }
             is CheckInOut -> {
-                navigateToActivity("checkInOut")
+                navigateToActivity(item.type)
             }
             is Event -> {
                 if (item.clickAdd) {

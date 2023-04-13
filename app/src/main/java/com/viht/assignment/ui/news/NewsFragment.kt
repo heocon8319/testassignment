@@ -74,10 +74,12 @@ class NewsFragment : Fragment() {
                 count++
                 // on below line we are making our progress bar visible.
                 binding.pbLoading.visibility = View.VISIBLE
-                if (count < 20) {
+                if (count < 10) {
                     // on below line we are again calling
                     // a method to load data in our array list.
                     getData()
+                } else {
+                    binding.pbLoading.visibility = View.GONE
                 }
             }
         })

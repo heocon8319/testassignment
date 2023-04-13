@@ -18,12 +18,20 @@ data class NewsModel(
 fun NewsModel.toRecycleItem(): RecyclerItem {
     val id = System.currentTimeMillis().toString()
     return when (eventType) {
-        "event" -> (model as EventModel).toEventRecycleItem(id, eventDate ?: "")
-        "everydayHealth" -> (model as EverydayHealthModel).toEventRecycleItem(id, eventDate ?: "")
-        "checkOut", "checkIn" -> (model as CheckInOutModel).toCheckInOutRecycleItem(id, eventType)
-        "portfolio" -> (model as PortfolioModel).toPortfolioImageRecycleItem(id)
-        "story_published" -> (model as StoryPublishedModel).toPortfolioImageRecycleItem(id)
-        "story_exported" -> (model as StoryExportedModel).toPortfolioDownloadRecycleItem(
+        ModelType.EVENT.type -> (model as EventModel).toEventRecycleItem(id, eventDate ?: "")
+        ModelType.EVERYDAY_HEALTH.type -> (model as EverydayHealthModel).toEventRecycleItem(
+            id,
+            eventDate ?: ""
+        )
+        ModelType.CHECK_OUT.type, ModelType.CHECK_IN.type -> (model as CheckInOutModel).toCheckInOutRecycleItem(
+            id,
+            eventType
+        )
+        ModelType.PORTFOLIO.type -> (model as PortfolioModel).toPortfolioImageRecycleItem(id)
+        ModelType.STORY_PUBLISHED.type -> (model as StoryPublishedModel).toPortfolioImageRecycleItem(
+            id
+        )
+        ModelType.STORY_EXPORTED.type -> (model as StoryExportedModel).toPortfolioDownloadRecycleItem(
             id,
             eventDescription ?: ""
         )

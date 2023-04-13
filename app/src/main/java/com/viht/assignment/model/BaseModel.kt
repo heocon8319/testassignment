@@ -1,5 +1,6 @@
 package com.viht.assignment.model
 
-abstract class BaseModel {
+interface BaseModel {
+    //val eventType: ModelType
     //fun execute(jsonString: String?): BaseModel
 }

@@ -1,7 +1,6 @@
 package com.viht.assignment.model
 
 import android.os.Parcelable
-import com.google.gson.Gson
 import com.viht.assignment.ui.news.view.event.Event
 import com.viht.assignment.util.DateUtils
 import kotlinx.parcelize.Parcelize
@@ -14,8 +13,8 @@ data class EventModel(
     val eventTitle: String?,
     val schoolId: String?,
     val schoolName: String?
-) : Parcelable, BaseModel() {
-
+) : Parcelable, BaseModel {
+//    override val eventType = ModelType.EVENT
 //    override fun execute(jsonString: String?): BaseModel {
 //        return Gson().fromJson(jsonString, EventModel::class.java)
 //    }

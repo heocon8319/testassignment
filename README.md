@@ -8,6 +8,7 @@ The Application is using the mock api ( created from json file) to showing news.
 Apply SOLID principles
 MVVM: Structure to which mvvm design pattern can be applied
 
+BRANCH : develop(or main)
 Build With:
 
 Kotlin - Programming language for Android

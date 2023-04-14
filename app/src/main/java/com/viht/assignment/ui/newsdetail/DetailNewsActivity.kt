@@ -33,7 +33,7 @@ class DetailNewsActivity : BaseActivity<ActivityDetailNewsBinding>() {
     private fun initView() {
 
         var title = getString(R.string.news_detail_act_title_event)
-        val frag = when (intent.extras?.getString(INTENT_FRAGMENT_TYPE, "event")) {
+        val frag = when (intent.extras?.getString(INTENT_FRAGMENT_TYPE)) {
             ViewType.CHECK_IN.type -> {
                 title = getString(R.string.news_detail_act_title_check_in)
                 DetailCheckInOutFragment.newInstance()
@@ -54,7 +54,9 @@ class DetailNewsActivity : BaseActivity<ActivityDetailNewsBinding>() {
                 title = getString(R.string.news_detail_act_title_image)
                 DetailImageFragment.newInstance()
             }
-            else -> DetailEventFragment.newInstance()
+            else -> {
+                throw IllegalStateException("Unknown fragment type")
+            }
         }
         binding.tvTitle.text = title
         replaceFragment(frag, R.id.container)

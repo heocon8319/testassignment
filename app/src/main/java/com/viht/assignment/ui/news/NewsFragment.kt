@@ -65,6 +65,7 @@ class NewsFragment : Fragment() {
         }
 
         data = arrayListOf()
+        getData()
 
         binding.scrollView.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
             // on scroll change we are checking when users scroll as bottom.
@@ -87,9 +88,10 @@ class NewsFragment : Fragment() {
 
     private fun initData() {
         viewModel.error.observe(viewLifecycleOwner) {
+            binding.rvNews.visibility = View.VISIBLE
+            binding.pbLoading.visibility = View.GONE
             Log.d("viht error", it)
             Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
-            listAdapter.submitList(mutableListOf())
         }
 
         viewModel.response.observe(viewLifecycleOwner) {

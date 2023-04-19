@@ -25,10 +25,6 @@ class NewsViewModel @Inject constructor(private val repo: NewsRepository) : Base
     private val _response: SingleLiveEvent<ArrayList<RecyclerItem>> = SingleLiveEvent()
     val response: LiveData<ArrayList<RecyclerItem>> get() = _response
 
-    init {
-        loadNews()
-    }
-
     // getting news list using repository and passing it into live data
     fun loadNews() {
         showLoading(true)
